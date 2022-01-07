@@ -1,12 +1,15 @@
 import logo from './logo.svg';
-import React, { useState } from 'react';
 import './App.css';
+
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+
 import PlayerComponent from './components/PlayerComponent/PlayerComponent'
 
 function App() {
 
-  const [website, setWebsite]  = useState('');
- 
+  const [website, setWebsite] = useState('');
+
   let getWebsite = (e) => {
     setWebsite(e.target.value);
   }
@@ -15,6 +18,14 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
+
+        <Router>
+          <Routes>
+            <Route path="/" element={<App />} />
+            <Route path="/player" element={<PlayerComponent />} />
+          </Routes>
+        </Router>
+        
         <img src={logo} className="App-logo" alt="logo" />
 
         <p>
@@ -24,7 +35,7 @@ function App() {
 
         < div >
           Enter the URL <input type="text" onChange={getWebsite} />
-          < PlayerComponent url = {website} />
+          < PlayerComponent url={website} />
         </div >
       </header>
 
