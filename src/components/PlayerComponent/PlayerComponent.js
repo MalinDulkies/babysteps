@@ -5,9 +5,8 @@ import ReactPlayer from 'react-player';
 
 function PlayerComponent(props){
 
-
     return(
-    <ReactPlayer url={props.url} />
+    <ReactPlayer playing ="true" url={props.url} />
     );
 }
 export default PlayerComponent
