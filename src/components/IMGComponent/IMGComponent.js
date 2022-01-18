@@ -2,10 +2,12 @@ import React from 'react';
 
 
 
-function IMGComponent(props){
+function IMGComponent(props) {
 
-    return(
-        <img src={props.src} ></img>
+    const url = props.src;
+
+    return (
+        <img src={url} ></img>
     );
 }
 export default IMGComponent

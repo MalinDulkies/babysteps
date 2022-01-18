@@ -1,39 +1,54 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
-import PlayerComponent from './components/PlayerComponent/PlayerComponent'
-import IMGComponent from './components/IMGComponent/IMGComponent'
+import PlayerComponent from '../PlayerComponent/PlayerComponent'
+import IMGComponent from '../IMGComponent/IMGComponent'
 
 
 
-function DisplayComponent(props){
+function DisplayComponent(props) {
 
     const [IMG, isIMG] = useState(false);
-    const [Video, isVideo] = useState(false);
 
-    const connection = props.website.openConnection();
+    const site = props.url;
+
+    /* 
+
+    const connection = site.openConnection();
     const contentType = connection.getHeaderField("Content-Type");
 
-    let checkIMG = () => {
-        if (contentType.startsWith("image/")) {
-            isIMG = true;
-            isVideo = false;
-            IMG = props.website;
+        let checkIMG = () => {
+        if (splitURL.contains("jpg", "png", "jpeg")) {
+            IMG = true;
         }
       }
     
       let getVideo = () => {
-        if(contentType.startsWith("video/")){
-            isVideo = true;
-            isIMG = false;
-            Video = props.website;
+        if(splitURL.contains("mp4", "mov", "avi")){
+            Video = true;
 
         } 
       }
 
-    return(
+     */
+
+    const splitURL = site.split(".").pop();
+
+    console.log(site.type)
+    console.log(site);
+    console.log(splitURL);
+
+    useEffect(() => {
+        if (splitURL.includes("jpg", "png", "jpeg")) {
+            isIMG(true);
+        }
+        if (splitURL.includes("mp4", "mov", "avi")) {
+            isIMG(false);
+        }
+    });
+
+    return (
         <div>
-            {isVideo && props.website.length > 0 ? < PlayerComponent url={Video} /> : null}
-            {isIMG && props.website.length > 0 ? < IMGComponent url={IMG} /> : null}
+            {IMG ? < IMGComponent src={site} /> : < PlayerComponent url={site} />}
         </div>
     );
 }
