@@ -31,7 +31,7 @@ function DisplayComponent(props) {
 
      */
 
-    const splitURL = site.split(".").pop();
+    const splitURL = site.split(".");
 
     console.log(site.type)
     console.log(site);
