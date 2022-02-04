@@ -8,6 +8,7 @@ import IMGComponent from '../IMGComponent/IMGComponent'
 function DisplayComponent(props) {
 
     const [IMG, isIMG] = useState(false);
+    const [VID, isVID] = useState(false);
 
     const site = props.url;
 
@@ -38,17 +39,17 @@ function DisplayComponent(props) {
     console.log(splitURL);
 
     useEffect(() => {
-        if (splitURL.includes("jpg", "png", "jpeg")) {
+        if (splitURL.includes("jpg") || splitURL.includes("png") || splitURL.includes("jpeg"))  {
             isIMG(true);
         }
-        if (splitURL.includes("mp4", "mov", "avi")) {
-            isIMG(false);
+        if (splitURL.includes("mp3") || splitURL.includes("mov") || splitURL.includes("avi")) {
+            isVID(true);
         }
-    });
+    }, {});
 
     return (
         <div>
-            {IMG ? < IMGComponent src={site} /> : < PlayerComponent url={site} />}
+            {IMG ? < IMGComponent src={site} /> : VID ? < PlayerComponent url={site}/> : null}
         </div>
     );
 }
